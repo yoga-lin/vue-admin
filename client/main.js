@@ -13,6 +13,7 @@ import routes from './routes'
 import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+import axios from 'axios'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -21,15 +22,16 @@ Vue.use(Vuex)
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
 router.beforeEach((to, from, next) => {
   //NProgress.start();
   if (to.path == '/login') {
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('user')
   }
-  let user = JSON.parse(sessionStorage.getItem('user'));
+  let user = JSON.parse(localStorage.getItem('user'));
   if (!user && to.path != '/login') {
     next({ path: '/login' })
   } else {
@@ -38,15 +40,12 @@ router.beforeEach((to, from, next) => {
 })
 
 //router.afterEach(transition => {
-//NProgress.done();
-//});
+  // NProgress.done();
+//})
 
 new Vue({
-  //el: '#app',
-  //template: '<App/>',
   router,
   store,
-  //components: { App }
   render: h => h(App)
 }).$mount('#app')
 

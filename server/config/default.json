@@ -1,0 +1,12 @@
+{
+  "mongodb": {
+    "server": {
+      "host": "mongo",
+      "port": 27017
+    },
+    "db": "vue-koa-admin"
+  },
+  "mongo": {
+    "uri": "mongodb://127.0.0.1:27017/vue-koa-admin"
+  }
+}
